@@ -1,6 +1,6 @@
 import '../css/style.css'
-import {Actor, Engine, Physics, Vector} from "excalibur"
-import { Resources, ResourceLoader } from './resources.js'
+import { Engine, Physics, Vector} from "excalibur"
+import {  ResourceLoader } from './resources.js'
 import { Level1 } from "../scenes/Level1.js";
 
 export class Game extends Engine {
@@ -13,8 +13,13 @@ export class Game extends Engine {
         })
         console.log("game.js")
         Physics.acc = new Vector(0, 800)
-
         this.start(ResourceLoader).then(() => this.startGame())
+
+    }
+    onInitialize(_engine) {
+        super.onInitialize(_engine);
+
+        console.log("first level")
     }
 
     startGame() {
