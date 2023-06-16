@@ -1,4 +1,4 @@
-import {Actor, Input, Vector,} from "excalibur";
+import {Actor, Input, Vector, CollisionType, Shape, vec} from "excalibur";
 import { Resources } from './resources.js'
 
 export class Player extends Actor {
@@ -9,15 +9,14 @@ export class Player extends Actor {
     isOnGround = true
 
 
-    // constructor() {
-    //     super({
-    //         collisionType: CollisionType.Active,
-    //         collider: Shape.Box(20, 40, Vector.Half, vec(0, 0))
-    //     });
-    // }
+    constructor() {
+        super({
+            collisionType: CollisionType.Active,
+            collider: Shape.Box(20, 40, Vector.Half, vec(0, 0))
+        });
+    }
 
     onInitialize(_engine) {
-        // this.game = _engine
         this.graphics.use(Resources.Player.toSprite());
         this.pos = new Vector(400, 400);
         this.vel = new Vector(0, 0);
@@ -26,8 +25,6 @@ export class Player extends Actor {
 
 
     }
-
-
 
     onPreUpdate(engine, delta) {
         let speedvar = 0
@@ -41,38 +38,19 @@ export class Player extends Actor {
             this.isJumping = true
         }
 
-        // if  (this.pos.y > 1500) {
-        //     this.Lives--
-        //
-        //     console.log(this.Lives)
-        //
-        //     // if (this.Lives === 0){
-        //     //
-        //     //     this.Lives = 1
-        //     //     this.game.currentScene.resetPlayer()
-        //     //     this.game.currentScene.uivar.updatelife(this.Lives)
-        //     //     // let verzameld = this.game.currentScene.uivar.score
-        //     //     // engine.goToScene('gameOver', {bananscore: verzameld})
-        //     // }
-        //     // else{
-        //     //     this.game.currentScene.resetPlayer()
-        //     //     this.game.currentScene.uivar.updatelife(this.Lives)
-        //     // }
-        // }
-
-        if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){ // Jump or move up
+        if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){
             if (this.isOnGround){
-                //console.log("jump");
+
                 this.vel.y = -600
             }
         }
-        if (engine.input.keyboard.isHeld(Input.Keys.A) || engine.input.keyboard.isHeld(Input.Keys.ArrowLeft)){ // Jump or move up
-            //console.log("links");
+        if (engine.input.keyboard.isHeld(Input.Keys.A) || engine.input.keyboard.isHeld(Input.Keys.ArrowLeft)){
+
             speedvar = -250
             this.direction = "L"
         }
-        if (engine.input.keyboard.isHeld(Input.Keys.D) || engine.input.keyboard.isHeld(Input.Keys.ArrowRight)){ // Jump or move up
-            //console.log("Rechts");
+        if (engine.input.keyboard.isHeld(Input.Keys.D) || engine.input.keyboard.isHeld(Input.Keys.ArrowRight)){
+
             speedvar = 250
             this.direction = "R"
 

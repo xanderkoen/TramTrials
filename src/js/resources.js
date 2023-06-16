@@ -1,14 +1,12 @@
-import { ImageSource, Sound, Resource, Loader } from 'excalibur'
-import fishImage from '../images/fish.png'
+import { ImageSource, Loader } from 'excalibur'
 import Achtergrond from '../images/Achtergrond.jpg'
 import Grass from '../images/Grass.jpg'
 import Idlesheet from '../images/IdleSpritesheet.png'
 import Walkingsheet from '../images/WalkingSpritesheet.png'
-import Player from '../images/fish.png'
+import player from '../images/fish.png'
 
 const Resources = {
-    Fish: new ImageSource(fishImage),
-    Player: new ImageSource(fishImage),
+    Player: new ImageSource(player),
     Achtergrond: new ImageSource(Achtergrond),
     Grass: new ImageSource(Grass),
     Idlesheet: new ImageSource(Idlesheet),
