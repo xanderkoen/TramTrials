@@ -2,6 +2,7 @@ import '../css/style.css'
 import { Engine, Physics, Vector} from "excalibur"
 import {  ResourceLoader } from './resources.js'
 import { Level1 } from "../scenes/Level1.js";
+import {Beginscherm} from "../scenes/beginscherm.js";
 
 export class Game extends Engine {
 
@@ -28,8 +29,10 @@ export class Game extends Engine {
 
         //voeg de levels toe als scene
         this.addScene('Level1',firstLevel)
+        this.addScene('Beginscherm', new Beginscherm())
         //ga naar het de scene
-        this.goToScene('Level1')
+        this.goToScene('Beginscherm')
+
     }
 }
 
