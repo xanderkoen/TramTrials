@@ -1,9 +1,11 @@
-import {Scene, Vector} from "excalibur";
+import {Color, Font, Label, Scene, Timer, Vector} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
 import {Ground} from "../js/Ground";
 
 export class Level1 extends Scene {
+    score = 5
+    textScore
 
     startpos = new Vector(1500,900)
 
@@ -13,9 +15,31 @@ export class Level1 extends Scene {
         this.resetPlayer()
         this.add(this.player)
 
-        this.camera.strategy.lockToActor(this.player)
 
         this.createGround()
+
+        this.textScore = new Label({
+            font: new Font({
+                family: 'Arial',
+                size: 32,
+                color: Color.White,
+            }),
+            text: 'Start the Timer!',
+            pos: new Vector(250, 50),
+
+        })
+
+        const scoreTimer = new Timer({
+            fcn: () => this.updateScore(),
+            repeats: true,
+            interval: 1000,
+        })
+
+        this.add(scoreTimer)
+
+        scoreTimer.start()
+        this.add(this.textScore)
+
     }
     createGround() {
         for (let pos of Resources.GroundData.path) {
@@ -32,5 +56,21 @@ export class Level1 extends Scene {
 
         //put back to spawn
         this.player.pos = this.startpos
+    }
+
+    updateScore() {
+        this.score--
+        let data = {
+            score: this.score
+        }
+        if (this.score > 0){
+            this.textScore.text = `Tijd tot vertrek: ${this.score}`
+
+
+        }else{
+            this.textScore.text = `Game over`
+            console.log('xander heeft een hartaanval nodig nu per direct inshallah')
+        }
+        localStorage.setItem("score", JSON.stringify(data))
     }
 }
