@@ -1,11 +1,12 @@
 import { ImageSource, Loader, Resource } from 'excalibur'
 import Achtergrond from '../images/Achtergrond.jpg'
-import Grass from '../images/Grass.jpg'
+import Grass from '../images/Grass.png'
 import Idlesheet from '../images/IdleSpriteSheet.png'
-import Walkingsheet from '../images/walkSheet.png'
+import Walkingsheet from '../images/walkingSheet.png'
 import JumpingSheet from '../images/jumpingSpriteSheet.png'
 import player from '../images/fish.png'
 import grond from '../data/Ground.json'
+import tram from '../images/tram.png'
 
 
 
@@ -15,6 +16,7 @@ const Resources = {
     Grass: new ImageSource(Grass),
     Idlesheet: new ImageSource(Idlesheet),
     Walkingsheet: new ImageSource(Walkingsheet),
+    Tram: new ImageSource(tram),
     Jumpsheet: new ImageSource(JumpingSheet),
     Ground: new ImageSource(Grass),
     GroundData: new Resource(grond, "json"),

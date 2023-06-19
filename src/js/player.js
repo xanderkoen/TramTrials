@@ -1,4 +1,15 @@
-import {Actor, Input, Vector, CollisionType, Shape, vec, SpriteSheet, range, Animation} from "excalibur";
+import {
+    Actor,
+    Input,
+    Vector,
+    CollisionType,
+    Shape,
+    vec,
+    SpriteSheet,
+    range,
+    Animation,
+    AnimationStrategy
+} from "excalibur";
 import { Resources } from './resources.js'
 
 export class Player extends Actor {
@@ -6,7 +17,6 @@ export class Player extends Actor {
     game;
     playerAnimations = []
     direction = 'R'
-    isJumping = false
     isOnGround = true
 
 
@@ -20,7 +30,7 @@ export class Player extends Actor {
     onInitialize(_engine) {
         this.pos = new Vector(400, 400);
         this.vel = new Vector(0, 0);
-        this.scale = new Vector(0.5,0.5)
+        this.scale = new Vector(1,1)
 
         let IdleSheet = SpriteSheet.fromImageSource({
             image:Resources.Idlesheet,
@@ -44,6 +54,7 @@ export class Player extends Actor {
 
         let JumpSheet = SpriteSheet.fromImageSource({
             image:Resources.Jumpsheet,
+            freeze: true,
             grid: {
                 rows: 1,
                 columns: 3,
@@ -53,9 +64,8 @@ export class Player extends Actor {
         })
 
         this.playerAnimations['idleSprite'] = Animation.fromSpriteSheet(IdleSheet, range(0, 2), 250);
-        this.playerAnimations['walkSprite'] = Animation.fromSpriteSheet(WalkSheet, range(0, 2), 100);
-        this.playerAnimations['jumpSprite'] = Animation.fromSpriteSheet(JumpSheet, range(0, 2), 250);
-
+        this.playerAnimations['walkSprite'] = Animation.fromSpriteSheet(WalkSheet, range(0, 4), 160);
+        this.playerAnimations['jumpSprite'] = Animation.fromSpriteSheet(JumpSheet, range(0, 3), 75, AnimationStrategy.Freeze);
         this.game = this.engine;
 
     }
@@ -69,12 +79,7 @@ export class Player extends Actor {
 
         //determine if the player is jumping
         if (this.vel.y === 0) {
-            this.isJumping = false;
             this.isOnGround = true;
-        }
-        else {
-            this.isOnGround = false;
-            this.isJumping = true;
         }
 
         switch (true) {
@@ -86,7 +91,7 @@ export class Player extends Actor {
                 this.graphics.use(this.playerAnimations['walkSprite'])
                 break;
 
-            case this.vel.y !== 0 && this.isJumping === true:
+            case this.isOnGround === false:
                 switch (this.direction) {    //left or right
                     case 'R':
                         this.playerAnimations['jumpSprite'].flipHorizontal = false
@@ -96,6 +101,7 @@ export class Player extends Actor {
                         this.playerAnimations['jumpSprite'].flipHorizontal = true
                         break;
                 }
+                this.graphics.use(this.playerAnimations['jumpSprite'])
                 break;
         }
 
@@ -103,8 +109,9 @@ export class Player extends Actor {
 
         if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){
             if (this.isOnGround){
-
+                this.playerAnimations['jumpSprite'].reset()
                 this.vel.y = -600
+                this.isOnGround = false
             }
         }
         if (engine.input.keyboard.isHeld(Input.Keys.A) || engine.input.keyboard.isHeld(Input.Keys.ArrowLeft)){
