@@ -1,15 +1,18 @@
-import {Color, Font, Label, Scene, Timer, Vector} from "excalibur";
+import {Color, Font, Label, Scene, Timer, Vector, Engine} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
 import {Ground} from "../js/Ground";
+import {Beginscherm} from "./beginscherm";
+import {Eindscherm} from "./eindscherm";
 
 export class Level1 extends Scene {
-    score = 5
+    score
     textScore
 
     startpos = new Vector(1500,900)
 
     onInitialize(_engine) {
+        this.score = 5
         console.log("1st level");
         this.player = new Player()
         this.resetPlayer()
@@ -17,6 +20,7 @@ export class Level1 extends Scene {
 
 
         this.createGround()
+        this.resetTime()
 
         this.textScore = new Label({
             font: new Font({
@@ -40,6 +44,7 @@ export class Level1 extends Scene {
         scoreTimer.start()
         this.add(this.textScore)
 
+
     }
     createGround() {
         for (let pos of Resources.GroundData.path) {
@@ -58,7 +63,7 @@ export class Level1 extends Scene {
         this.player.pos = this.startpos
     }
 
-    updateScore() {
+    updateScore(engine) {
         this.score--
         let data = {
             score: this.score
@@ -70,7 +75,14 @@ export class Level1 extends Scene {
         }else{
             this.textScore.text = `Game over`
             console.log('xander heeft een hartaanval nodig nu per direct inshallah')
+                this.engine.goToScene('Eindscherm')
+
+            this.resetTime()
+            this.textScore.text = `start de tijd`
         }
         localStorage.setItem("score", JSON.stringify(data))
+    }
+    resetTime(){
+        this.score = 5
     }
 }
