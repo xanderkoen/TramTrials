@@ -15,8 +15,7 @@ export class Tram extends Actor {
     }
 
     onInitialize(_engine) {
-        this.graphics.use(Resources.Tram.toSprite()).flipHorizontal = true
-
+        this.graphics.use(Resources.Tram.toSprite())
         this.body.collisionType = CollisionType.Fixed
         this.game = _engine
 

@@ -1,4 +1,4 @@
-import {Color, Font, Label, Scene, Timer, Vector, Engine} from "excalibur";
+import {Color, Font, Label, Scene, Timer, Vector, Engine, Delay} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
 import { Ticket } from "../js/ticket.js"
@@ -24,6 +24,7 @@ export class Level1 extends Scene {
         this.createGround()
         this.resetTime()
         this.tram = new Tram()
+
         this.add(this.tram)
 
         this.textScore = new Label({
@@ -83,14 +84,18 @@ export class Level1 extends Scene {
 
         }else{
             this.textScore.text = `Game over`
-            this.engine.goToScene('Eindscherm')
+            this.tram.vel = new Vector(-35,1);
+
 
             this.resetTime()
             this.textScore.text = `start de tijd`
+            this.engine.goToScene('Eindscherm')
+
+
         }
         localStorage.setItem("score", JSON.stringify(data))
     }
     resetTime(){
-        this.score = 60
+        this.score = 2
     }
 }

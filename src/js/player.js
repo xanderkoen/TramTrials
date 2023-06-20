@@ -11,11 +11,8 @@ import {
     AnimationStrategy,
 } from "excalibur";
 import { Resources } from './resources.js'
-<<<<<<< HEAD
-import {Ticket} from "./ticket.js";
-=======
 import {Tram} from "./tram";
->>>>>>> tram
+import {Ticket} from "./ticket";
 
 export class Player extends Actor {
     engine;
@@ -121,12 +118,6 @@ export class Player extends Actor {
                 break;
         }
 
-<<<<<<< HEAD
-=======
-        // console.log(this.isOnGround, this.vel.y,)
-        // console.log(this.pos.x)
-
->>>>>>> tram
         if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){
             if (this.isOnGround){
                 this.playerAnimations['jumpSprite'].reset()
