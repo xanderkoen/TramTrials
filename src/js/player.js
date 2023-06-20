@@ -11,6 +11,7 @@ import {
     AnimationStrategy,
 } from "excalibur";
 import { Resources } from './resources.js'
+import {Ticket} from "./ticket.js";
 
 export class Player extends Actor {
     engine;
@@ -31,10 +32,10 @@ export class Player extends Actor {
         this.pos = new Vector(400, 400);
         this.anchor = new Vector(0.5, 0.6)
         this.vel = new Vector(0, 0);
-        this.scale = new Vector(1,1)
+        this.scale = new Vector(1, 1)
 
         let IdleSheet = SpriteSheet.fromImageSource({
-            image:Resources.Idlesheet,
+            image: Resources.Idlesheet,
             grid: {
                 rows: 1,
                 columns: 2,
@@ -44,7 +45,7 @@ export class Player extends Actor {
         })
 
         let WalkSheet = SpriteSheet.fromImageSource({
-            image:Resources.Walkingsheet,
+            image: Resources.Walkingsheet,
             grid: {
                 rows: 1,
                 columns: 4,
@@ -54,7 +55,7 @@ export class Player extends Actor {
         })
 
         let JumpSheet = SpriteSheet.fromImageSource({
-            image:Resources.Jumpsheet,
+            image: Resources.Jumpsheet,
             freeze: true,
             grid: {
                 rows: 1,
@@ -69,11 +70,16 @@ export class Player extends Actor {
         this.playerAnimations['jumpSprite'] = Animation.fromSpriteSheet(JumpSheet, range(0, 3), 75, AnimationStrategy.Freeze);
         this.game = this.engine;
 
+        //onCollision start
+        this.on('collisionstart', (event) => this.onCollision(event))
+
     }
 
     onCollision(event) {
-
-    }
+            if (event.other instanceof Ticket ) {
+                event.other.pickup()
+            }
+        }
 
     onPreUpdate(engine, delta) {
         let speedvar = 0;
@@ -109,8 +115,6 @@ export class Player extends Actor {
                 this.graphics.use(this.playerAnimations['jumpSprite'])
                 break;
         }
-
-        console.log(this.pos)
 
         if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){
             if (this.isOnGround){
