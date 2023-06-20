@@ -11,6 +11,7 @@ import {
     AnimationStrategy
 } from "excalibur";
 import { Resources } from './resources.js'
+import {Tram} from "./tram";
 
 export class Player extends Actor {
     engine;
@@ -67,6 +68,7 @@ export class Player extends Actor {
         this.playerAnimations['walkSprite'] = Animation.fromSpriteSheet(WalkSheet, range(0, 4), 160);
         this.playerAnimations['jumpSprite'] = Animation.fromSpriteSheet(JumpSheet, range(0, 3), 75, AnimationStrategy.Freeze);
         this.game = this.engine;
+        this.on('collisionstart', (event) => this.entertram(event))
 
     }
 
@@ -105,7 +107,8 @@ export class Player extends Actor {
                 break;
         }
 
-        console.log(this.isOnGround, this.vel.y)
+        // console.log(this.isOnGround, this.vel.y,)
+        // console.log(this.pos.x)
 
         if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){
             if (this.isOnGround){
@@ -128,6 +131,12 @@ export class Player extends Actor {
 
         this.vel.x = speedvar
 
+    }
+    entertram(event){
+        if (event.other instanceof Tram){
+
+            console.log('xander heeft kleine pik')
+        }
     }
 
 }

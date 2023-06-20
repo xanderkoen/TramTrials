@@ -2,8 +2,8 @@ import {Color, Font, Label, Scene, Timer, Vector, Engine} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
 import {Ground} from "../js/Ground";
-import {Beginscherm} from "./beginscherm";
 import {Eindscherm} from "./eindscherm";
+import {Tram} from "../js/tram";
 
 export class Level1 extends Scene {
     score
@@ -12,6 +12,7 @@ export class Level1 extends Scene {
     startpos = new Vector(1500,900)
 
     onInitialize(_engine) {
+        _engine.showDebug(true)
         this.score = 1
         console.log("1st level");
         this.player = new Player()
@@ -21,6 +22,8 @@ export class Level1 extends Scene {
 
         this.createGround()
         this.resetTime()
+        this.tram = new Tram()
+        this.add(this.tram)
 
         this.textScore = new Label({
             font: new Font({
