@@ -3,17 +3,14 @@ import { Resources, ResourceLoader } from "../js/resources";
 export class Beginscherm extends Scene {
     game;
 
-    constructor() {
-        super({displayMode: 'FitScreenAndFill'});
-    }
-
     onInitialize(engine) {
         this.game = engine;
 
         const background = new Actor();
-        background.graphics.use(Resources.Achtergrond.toSprite());
+        background.graphics.use(Resources.MainMenu.toSprite());
         background.pos = new Vector(0, 0);
         background.anchor = new Vector(0, 0);
+        background.scale = new Vector(1.85, 1.75)
         this.add(background);
     }
 

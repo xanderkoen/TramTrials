@@ -1,8 +1,8 @@
 import {Color, Font, Label, Scene, Timer, Vector, Engine} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
+import { Ticket } from "../js/ticket.js"
 import {Ground} from "../js/Ground";
-import {Beginscherm} from "./beginscherm";
 import {Eindscherm} from "./eindscherm";
 
 export class Level1 extends Scene {
@@ -44,6 +44,11 @@ export class Level1 extends Scene {
         scoreTimer.start()
         this.add(this.textScore)
 
+        const tickit = new Ticket(946, 480)
+        this.add(tickit)
+
+        _engine.showDebug(true)
+
 
     }
     createGround() {
@@ -74,8 +79,7 @@ export class Level1 extends Scene {
 
         }else{
             this.textScore.text = `Game over`
-            console.log('xander heeft een hartaanval nodig nu per direct inshallah')
-                this.engine.goToScene('Eindscherm')
+            this.engine.goToScene('Eindscherm')
 
             this.resetTime()
             this.textScore.text = `start de tijd`
