@@ -12,7 +12,7 @@ export class Level1 extends Scene {
     startpos = new Vector(1500,900)
 
     onInitialize(_engine) {
-        this.score = 5
+        this.score = 1
         console.log("1st level");
         this.player = new Player()
         this.resetPlayer()
@@ -83,6 +83,6 @@ export class Level1 extends Scene {
         localStorage.setItem("score", JSON.stringify(data))
     }
     resetTime(){
-        this.score = 5
+        this.score = 60
     }
 }
