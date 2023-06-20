@@ -11,7 +11,11 @@ import {
     AnimationStrategy,
 } from "excalibur";
 import { Resources } from './resources.js'
+<<<<<<< HEAD
 import {Ticket} from "./ticket.js";
+=======
+import {Tram} from "./tram";
+>>>>>>> tram
 
 export class Player extends Actor {
     engine;
@@ -69,6 +73,7 @@ export class Player extends Actor {
         this.playerAnimations['walkSprite'] = Animation.fromSpriteSheet(WalkSheet, range(0, 4), 160);
         this.playerAnimations['jumpSprite'] = Animation.fromSpriteSheet(JumpSheet, range(0, 3), 75, AnimationStrategy.Freeze);
         this.game = this.engine;
+        this.on('collisionstart', (event) => this.entertram(event))
 
         //onCollision start
         this.on('collisionstart', (event) => this.onCollision(event))
@@ -116,6 +121,12 @@ export class Player extends Actor {
                 break;
         }
 
+<<<<<<< HEAD
+=======
+        // console.log(this.isOnGround, this.vel.y,)
+        // console.log(this.pos.x)
+
+>>>>>>> tram
         if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){
             if (this.isOnGround){
                 this.playerAnimations['jumpSprite'].reset()
@@ -137,6 +148,12 @@ export class Player extends Actor {
 
         this.vel.x = speedvar
 
+    }
+    entertram(event){
+        if (event.other instanceof Tram){
+
+            console.log('xander heeft kleine pik')
+        }
     }
 
 }
