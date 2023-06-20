@@ -1,4 +1,4 @@
-import { ImageSource, Loader, Resource } from 'excalibur'
+import {Color, ImageSource, Loader, Resource} from 'excalibur'
 import Achtergrond from '../images/Achtergrond.jpg'
 import Grass from '../images/Grass.png'
 import Idlesheet from '../images/IdleSpriteSheet.png'
@@ -8,6 +8,9 @@ import player from '../images/fish.png'
 import grond from '../data/Ground.json'
 import tram from '../images/tram.png'
 import test from '../images/test.jpg'
+import kaart from '../images/kaart.png'
+import logo from '../images/TTLogo.png'
+import mainmenu from '../images/Main_Menu.png'
 
 
 
@@ -22,6 +25,9 @@ const Resources = {
     Ground: new ImageSource(Grass),
     GroundData: new Resource(grond, "json"),
     Test: new ImageSource(test),
+    Kaart: new ImageSource(kaart),
+    MainMenu: new ImageSource(mainmenu),
+    Logo: new ImageSource(logo)
 }
 const resourceArray = []
 for (const key in Resources) {
@@ -29,5 +35,10 @@ for (const key in Resources) {
 }
 
 const ResourceLoader = new Loader(resourceArray)
+
+//pre-load options
 ResourceLoader.suppressPlayButton = true
+ResourceLoader.backgroundColor = Color.Black
+ResourceLoader.loadingBarColor = Color.Yellow
+ResourceLoader.logo = logo
 export { Resources, ResourceLoader }
