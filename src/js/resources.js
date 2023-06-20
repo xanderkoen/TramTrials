@@ -7,6 +7,7 @@ import JumpingSheet from '../images/jumpingSpriteSheet.png'
 import player from '../images/fish.png'
 import grond from '../data/Ground.json'
 import tram from '../images/tram.png'
+import test from '../images/test.jpg'
 
 
 
@@ -20,6 +21,7 @@ const Resources = {
     Jumpsheet: new ImageSource(JumpingSheet),
     Ground: new ImageSource(Grass),
     GroundData: new Resource(grond, "json"),
+    Test: new ImageSource(test),
 }
 const resourceArray = []
 for (const key in Resources) {

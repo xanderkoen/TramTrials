@@ -8,7 +8,7 @@ import {
     SpriteSheet,
     range,
     Animation,
-    AnimationStrategy
+    AnimationStrategy,
 } from "excalibur";
 import { Resources } from './resources.js'
 
@@ -23,12 +23,13 @@ export class Player extends Actor {
     constructor() {
         super({
             collisionType: CollisionType.Active,
-            collider: Shape.Box(20, 150, Vector.Half, vec(0, 0))
+            collider: Shape.Box(60, 120, Vector.Half, vec(0, 0))
         });
     }
 
     onInitialize(_engine) {
         this.pos = new Vector(400, 400);
+        this.anchor = new Vector(0.5, 0.6)
         this.vel = new Vector(0, 0);
         this.scale = new Vector(1,1)
 
@@ -70,6 +71,10 @@ export class Player extends Actor {
 
     }
 
+    onCollision(event) {
+
+    }
+
     onPreUpdate(engine, delta) {
         let speedvar = 0;
 
@@ -105,7 +110,7 @@ export class Player extends Actor {
                 break;
         }
 
-        console.log(this.isOnGround, this.vel.y)
+        console.log(this.pos)
 
         if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.ArrowUp) || engine.input.keyboard.isHeld(Input.Keys.Space)){
             if (this.isOnGround){
