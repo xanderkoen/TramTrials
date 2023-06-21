@@ -34,6 +34,7 @@ export class Player extends Actor {
         this.anchor = new Vector(0.5, 0.6)
         this.vel = new Vector(0, 0);
         this.scale = new Vector(1, 1)
+        this.z = 1
 
         let IdleSheet = SpriteSheet.fromImageSource({
             image: Resources.Idlesheet,
@@ -146,5 +147,4 @@ export class Player extends Actor {
             console.log('xander heeft kleine pik')
         }
     }
-
 }

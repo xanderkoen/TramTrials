@@ -7,7 +7,7 @@ export class Tram extends Actor {
     startpos = new Vector (-200, 480)
 
     constructor(x, y) {
-        super({ width: Resources.Tram.width, height: Resources.Tram.height }) // collision box!
+        super({ width: Resources.Tram.width, height: 100 }) // collision box!
         this.pos = this.startpos
         this.scale = new Vector(1, 1);
     }
@@ -16,6 +16,7 @@ export class Tram extends Actor {
         this.graphics.use(Resources.Tram.toSprite())
         this.body.collisionType = CollisionType.Fixed
         this.game = _engine
+        this.anchor = new Vector(0.5, 0.5)
 
     }
 
@@ -23,13 +24,16 @@ export class Tram extends Actor {
 
         //put tram back to startpos
         this.pos = startpos
+        this.body.collisionType = CollisionType.Fixed
     }
 
     moveTram() {
-        this.vel = new Vector(800, 0)
+        this.vel = new Vector(550, 0)
 
         //after 2 seconds go to game over
-        setTimeout(() => {this.game.goToScene('Eindscherm')}, 2000)
+        setTimeout(() => {this.game.goToScene('Eindscherm')}, 3000)
+        this.body.collisionType = CollisionType.Passive
+
     }
 
 
