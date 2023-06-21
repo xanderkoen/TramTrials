@@ -34,7 +34,7 @@ export class UI extends ScreenElement {
             font: new Font({
                 unit: FontUnit.Px,
                 size: 30,
-                color: Color.White,
+                color: Color.Black,
                 baseAlign: BaseAlign.Top
             }),
         })

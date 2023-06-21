@@ -1,4 +1,4 @@
-import {Color, Font, Label, Scene, Timer, Vector, Engine, Delay} from "excalibur";
+import {Color, Font, Label, Scene, Timer, Vector, Engine, Delay, Actor, ParallaxComponent} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
 import { Ticket } from "../js/ticket.js"
@@ -22,7 +22,7 @@ export class Level1 extends Scene {
 
 
     onInitialize(_engine) {
-        _engine.showDebug(true)
+        //_engine.showDebug(true)
         console.log("1st level");
 
         this.player = new Player()
@@ -36,6 +36,12 @@ export class Level1 extends Scene {
         //UI
         this.uivar = new UI()
         this.add(this.uivar)
+
+        this.background = new Actor()
+        this.background.graphics.use(Resources.Achtergrond.toSprite())
+        this.background.z = -1
+        this.background.scale = new Vector(1.5, 1.45)
+        this.add(this.background)
 
     }
 

@@ -1,5 +1,5 @@
 import {Color, ImageSource, Loader, Resource} from 'excalibur'
-import Achtergrond from '../images/Achtergrond.jpg'
+import Achtergrond from '../images/Achtergrond2.png'
 import Grass from '../images/Grass.png'
 import Idlesheet from '../images/IdleSpriteSheet.png'
 import Walkingsheet from '../images/walkingSheet.png'
