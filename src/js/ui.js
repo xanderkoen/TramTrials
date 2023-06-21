@@ -41,8 +41,9 @@ export class UI extends ScreenElement {
 
         this.graphics.add(this.timerText)
 
-
         this.tram = new Tram()
+        this.tram.z = 0
+
         this.addChild(this.tram)
     }
 

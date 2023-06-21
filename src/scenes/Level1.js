@@ -13,7 +13,7 @@ export class Level1 extends Scene {
     startpos = new Vector(400,400)
 
     //tram start position
-    trampos = new Vector (-200, 480)
+    trampos = new Vector (-200, 450)
 
     //time in this level before the tram leaves
     leveltime = 5
