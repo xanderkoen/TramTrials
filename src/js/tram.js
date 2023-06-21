@@ -20,7 +20,16 @@ export class Tram extends Actor {
     }
 
     resettram(startpos) {
-       this.pos = startpos
+
+        //put tram back to startpos
+        this.pos = startpos
+    }
+
+    moveTram() {
+        this.vel = new Vector(800, 0)
+
+        //after 2 seconds go to game over
+        setTimeout(() => {this.game.goToScene('Eindscherm')}, 2000)
     }
 
 
