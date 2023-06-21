@@ -10,22 +10,19 @@ export class Level1 extends Scene {
     score
     textScore
 
-    startpos = new Vector(1500,900)
+    startpos = new Vector(400,400)
+    trampos = new Vector (-200, 480)
+
+    tram
 
     onInitialize(_engine) {
         _engine.showDebug(true)
-        this.score = 1
         console.log("1st level");
+
         this.player = new Player()
-        this.resetPlayer()
         this.add(this.player)
 
-
         this.createGround()
-        this.resetTime()
-        this.tram = new Tram()
-
-        this.add(this.tram)
 
         this.textScore = new Label({
             font: new Font({
@@ -46,13 +43,19 @@ export class Level1 extends Scene {
 
         this.add(scoreTimer)
 
-        scoreTimer.start()
+        this.updateScore()
         this.add(this.textScore)
 
         const tickit = new Ticket(946, 480)
         this.add(tickit)
 
+        let tram = new Tram()
+        this.tram = tram
+        this.add(tram)
+
         _engine.showDebug(true)
+
+
 
 
     }
@@ -78,24 +81,25 @@ export class Level1 extends Scene {
         let data = {
             score: this.score
         }
-        if (this.score > 0){
-            this.textScore.text = `Tijd tot vertrek: ${this.score}`
+        if (this.score === 0){
+            //this.textScore.text = `Tijd tot vertrek: ${this.score}`
 
-
-        }else{
             this.textScore.text = `Game over`
-            this.tram.vel = new Vector(-35,1);
-
-
-            this.resetTime()
+            this.tram.vel = new Vector(800,0);
             this.textScore.text = `start de tijd`
-            this.engine.goToScene('Eindscherm')
 
+            setTimeout(() => {
+                this.resetLevel()
+                this.engine.goToScene('Eindscherm')
+            }, 3000)
 
         }
         localStorage.setItem("score", JSON.stringify(data))
     }
-    resetTime(){
-        this.score = 2
+    resetLevel(){
+        this.score = 10
+        this.resetPlayer()
+        this.tram.vel = new Vector(0,0);
+        this.tram.resettram(this.trampos)
     }
 }
