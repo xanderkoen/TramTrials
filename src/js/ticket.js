@@ -27,4 +27,12 @@ export class Ticket extends Actor {
 
         this.body.collisionType = CollisionType.Fixed
     }
+
+    Pickup() {
+        this.kill()
+    }
+
+    reset() {
+        this.unkill()
+    }
 }

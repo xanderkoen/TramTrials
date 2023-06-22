@@ -81,9 +81,7 @@ export class Player extends Actor {
 
     onCollision(event) {
             if (event.other instanceof Ticket ) {
-                this.collectibles = new Collectibles(event.other)
-
-                this.collectibles.PickupTicket()
+                event.other.Pickup()
 
                 this.ticket = true
             }

@@ -19,10 +19,6 @@ export class Level1 extends Scene {
     //tram start position
     trampos = new Vector (-200, 450)
 
-    //ticket position
-    ticketpos = new Vector(946,480)
-        //new Vector(946, 480)
-
     //time in this level before the tram leaves
     leveltime = 60
 
@@ -38,6 +34,9 @@ export class Level1 extends Scene {
 
         this.createGround()
 
+        this.ticket = new Ticket(946, 480)
+        this.add(this.ticket)
+
         //UI
         this.uivar = new UI()
         this.add(this.uivar)
@@ -45,8 +44,6 @@ export class Level1 extends Scene {
         //Collectibles
         this.collectvar = new Collectibles()
         this.add(this.collectvar)
-
-        this.collectvar.spawnCollectibles(this.ticketpos)
 
         this.background = new Actor()
         this.background.graphics.use(Resources.Achtergrond.toSprite())
@@ -61,8 +58,20 @@ export class Level1 extends Scene {
         //reset all in level
         this.resetLevel()
 
+        //reset ticket
+        this.ticket.reset()
+
+        //reset collectibles UI
+        this.collectvar.ResetCollectiblesUI()
+
         //reset ui
         this.uivar.resetAll(this.leveltime, this.trampos)
+    }
+
+    onPreUpdate(_engine, _delta) {
+        if (this.ticket.isKilled()){
+            this.collectvar.PickupTicket()
+        }
     }
 
     createGround() {
