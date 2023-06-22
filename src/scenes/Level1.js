@@ -16,7 +16,7 @@ export class Level1 extends Scene {
     trampos = new Vector (-200, 450)
 
     //time in this level before the tram leaves
-    leveltime = 5
+    leveltime = 8
 
     uivar
 

@@ -20,6 +20,7 @@ export class Player extends Actor {
     playerAnimations = []
     direction = 'R'
     isOnGround = true
+    ticket
 
 
     constructor() {
@@ -35,7 +36,6 @@ export class Player extends Actor {
         this.vel = new Vector(0, 0);
         this.scale = new Vector(1, 1)
         this.z = 1
-
         let IdleSheet = SpriteSheet.fromImageSource({
             image: Resources.Idlesheet,
             grid: {
@@ -70,7 +70,7 @@ export class Player extends Actor {
         this.playerAnimations['idleSprite'] = Animation.fromSpriteSheet(IdleSheet, range(0, 2), 250);
         this.playerAnimations['walkSprite'] = Animation.fromSpriteSheet(WalkSheet, range(0, 4), 160);
         this.playerAnimations['jumpSprite'] = Animation.fromSpriteSheet(JumpSheet, range(0, 3), 75, AnimationStrategy.Freeze);
-        this.game = this.engine;
+        this.game = _engine
         this.on('collisionstart', (event) => this.entertram(event))
 
         //onCollision start
@@ -81,12 +81,12 @@ export class Player extends Actor {
     onCollision(event) {
             if (event.other instanceof Ticket ) {
                 event.other.pickup()
+                this.ticket = true
             }
         }
 
     onPreUpdate(engine, delta) {
         let speedvar = 0;
-
         //flip animation depending on direction player is facing
         this.playerAnimations["walkSprite"].flipHorizontal = this.direction !== "R";
         this.playerAnimations["idleSprite"].flipHorizontal = this.direction !== "R";
@@ -142,9 +142,14 @@ export class Player extends Actor {
 
     }
     entertram(event){
-        if (event.other instanceof Tram){
+        if (event.other instanceof Tram && this.ticket){
+            this.game.goToScene('Beginscherm')
 
-            console.log('xander heeft kleine pik')
+            console.log('xander heeft kleine pik, en je hebt de tram gehaald met ticket a sahbi')
+
+
+        }if (event.other instanceof Tram && !this.ticket){
+            console.log('je hebt geen ticket a sahbi')
         }
     }
 }
