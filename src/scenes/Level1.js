@@ -58,9 +58,6 @@ export class Level1 extends Scene {
         //reset all in level
         this.resetLevel()
 
-        //reset ticket
-        this.ticket.reset()
-
         //reset collectibles UI
         this.collectvar.ResetCollectiblesUI()
 
@@ -89,5 +86,9 @@ export class Level1 extends Scene {
 
         //put back to spawn
         this.player.pos = this.startpos
+
+        if (this.ticket.isKilled()){
+            this.add(this.ticket)
+        }
     }
 }

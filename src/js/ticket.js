@@ -32,7 +32,4 @@ export class Ticket extends Actor {
         this.kill()
     }
 
-    reset() {
-        this.unkill()
-    }
 }
