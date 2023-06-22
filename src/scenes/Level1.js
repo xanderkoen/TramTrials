@@ -10,11 +10,18 @@ import {Collectibles} from "../js/collectibles.js";
 
 export class Level1 extends Scene {
 
+    //level number
+    levelint = 1
+
     //player start position
     startpos = new Vector(400,400)
 
     //tram start position
     trampos = new Vector (-200, 450)
+
+    //ticket position
+    ticketpos = new Vector(946,480)
+        //new Vector(946, 480)
 
     //time in this level before the tram leaves
     leveltime = 60
@@ -31,9 +38,6 @@ export class Level1 extends Scene {
 
         this.createGround()
 
-        const tickit = new Ticket(946, 480)
-        this.add(tickit)
-
         //UI
         this.uivar = new UI()
         this.add(this.uivar)
@@ -42,15 +46,14 @@ export class Level1 extends Scene {
         this.collectvar = new Collectibles()
         this.add(this.collectvar)
 
+        this.collectvar.spawnCollectibles(this.ticketpos)
+
         this.background = new Actor()
         this.background.graphics.use(Resources.Achtergrond.toSprite())
         this.background.z = -1
         this.background.scale = new Vector(1.5, 1.45)
         this.add(this.background)
 
-
-        setTimeout(() => {this.collectvar.PickupTicket()}, 10000)
-        setTimeout(() => {this.collectvar.PickupSouvenir()}, 12000)
 
     }
 
@@ -67,8 +70,6 @@ export class Level1 extends Scene {
             const ground = new Ground(pos.x, pos.y)
             this.add(ground)
         }
-
-        console.log(Resources.GroundData)
     }
 
     resetLevel(){

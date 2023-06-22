@@ -29,7 +29,9 @@ export class Collectibles extends ScreenElement {
     }
 
     ticket
+    ticketent
     souvenir
+    ticketpos
 
     onInitialize(engine) {
 
@@ -59,13 +61,22 @@ export class Collectibles extends ScreenElement {
     }
 
     spawnCollectibles(ticketpos,){ //souvenir pos in de function doen als souvenir bestaat
-       this.ticket = new Ticket(ticketpos)
-        this.add(this.ticket)
+       this.ticketent = new Ticket()
+
+        let ticketx = ticketpos.x - 1100
+        let tickety = ticketpos.y - 10
+        this.ticketpos = new Vector(ticketx, tickety)
+        this.ticketent.pos = this.ticketpos
+        this.addChild(this.ticketent)
 
         //Souvenir spawn
     }
 
     PickupTicket() {
+       //pickup the ticket
+        this.ticketent.kill()
+
+        //show on UI
        this.graphics.add(this.ticket)
     }
 
@@ -73,5 +84,6 @@ export class Collectibles extends ScreenElement {
     PickupSouvenir() {
        this.graphics.add(this.souvenir)
     }
+
 
 }

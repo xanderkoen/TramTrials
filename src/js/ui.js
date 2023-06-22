@@ -76,7 +76,6 @@ export class UI extends ScreenElement {
 
         }else {
             //timer has not ran out
-            console.log(this.timer)
             this.timerText.text = `Tijd tot vertrek : ${this.timer}`
             setTimeout(() => {this.startTimer()}, 1000)
         }

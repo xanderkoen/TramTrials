@@ -12,9 +12,10 @@ export class Eindscherm extends Scene {
         this.game = engine;
 
         const background = new Actor();
-        background.graphics.use(Resources.Test.toSprite());
+        background.graphics.use(Resources.Gameover.toSprite());
         background.pos = new Vector(0, 0);
         background.anchor = new Vector(0, 0);
+        background.scale = new Vector(1.85, 1.75)
         this.add(background);
     }
 

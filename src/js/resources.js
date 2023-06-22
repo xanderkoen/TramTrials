@@ -11,6 +11,7 @@ import test from '../images/test.jpg'
 import kaart from '../images/kaart.png'
 import logo from '../images/TTLogo.png'
 import mainmenu from '../images/Main_Menu.png'
+import gameover from '../images/gameove.png'
 
 
 
@@ -27,6 +28,7 @@ const Resources = {
     Test: new ImageSource(test),
     Kaart: new ImageSource(kaart),
     MainMenu: new ImageSource(mainmenu),
+    Gameover: new ImageSource(gameover),
     Logo: new ImageSource(logo)
 }
 const resourceArray = []
