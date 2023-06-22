@@ -6,6 +6,7 @@ import {Ground} from "../js/Ground";
 import {Eindscherm} from "./eindscherm";
 import {Tram} from "../js/tram";
 import {UI} from "../js/ui.js";
+import {Collectibles} from "../js/collectibles.js";
 
 export class Level1 extends Scene {
 
@@ -16,13 +17,13 @@ export class Level1 extends Scene {
     trampos = new Vector (-200, 450)
 
     //time in this level before the tram leaves
-    leveltime = 8
+    leveltime = 60
 
     uivar
 
 
     onInitialize(_engine) {
-        //_engine.showDebug(true)
+        _engine.showDebug(true)
         console.log("1st level");
 
         this.player = new Player()
@@ -37,11 +38,19 @@ export class Level1 extends Scene {
         this.uivar = new UI()
         this.add(this.uivar)
 
+        //Collectibles
+        this.collectvar = new Collectibles()
+        this.add(this.collectvar)
+
         this.background = new Actor()
         this.background.graphics.use(Resources.Achtergrond.toSprite())
         this.background.z = -1
         this.background.scale = new Vector(1.5, 1.45)
         this.add(this.background)
+
+
+        setTimeout(() => {this.collectvar.PickupTicket()}, 10000)
+        setTimeout(() => {this.collectvar.PickupSouvenir()}, 12000)
 
     }
 
