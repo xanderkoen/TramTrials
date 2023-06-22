@@ -68,6 +68,7 @@ export class UI extends ScreenElement {
         //checks if timer is 0
         if (this.timer === 0) {
             //timer ran out
+
             this.timerText.text = `Je bent te laat`
 
             //move tram

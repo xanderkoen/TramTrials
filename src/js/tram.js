@@ -1,5 +1,6 @@
 import { Physics, CollisionType, Actor, Vector, CollisionGroup, Engine } from "excalibur"
 import { Resources } from './resources.js'
+import {Ticket} from "./ticket";
 
 export class Tram extends Actor {
 
@@ -29,12 +30,14 @@ export class Tram extends Actor {
 
     moveTram() {
         this.vel = new Vector(550, 0)
-
+        console.log('tram vertrekt')
         //after 2 seconds go to game over
+
         setTimeout(() => {this.game.goToScene('Eindscherm')}, 3000)
-        this.body.collisionType = CollisionType.Passive
+        this.body.collisionType = CollisionType.PreventCollision
 
     }
+
 
 
 }
