@@ -23,6 +23,7 @@ export class UI extends ScreenElement {
 
     timer = 0
     timerText
+    ingestapt = false
 
     constructor() {
         super({x: 10, y: 10})
@@ -52,32 +53,33 @@ export class UI extends ScreenElement {
         //remove velocity
         this.tram.vel = new Vector(0,0);
 
+        console.log('reset timer')
+
         this.tram.resettram(trampos)
         //reset the timer to the levels variable
         this.timer = leveltime + 1
         this.timerText.text = `Tijd tot vertrek : ${this.timer}`
-
-        //movetram
-
-        this.startTimer()
     }
 
     startTimer() {
-        this.timer --
+        if (!this.ingestapt){
+            this.timer --
 
-        //checks if timer is 0
-        if (this.timer === 0) {
-            //timer ran out
+            //checks if timer is 0
+            if (this.timer <= 0) {
+                //timer ran out
 
-            this.timerText.text = `Je bent te laat`
+                this.timerText.text = `Je bent te laat`
 
-            //move tram
-            this.tram.moveTram()
+                //move tram
+                this.tram.moveTram()
 
-        }else {
-            //timer has not ran out
-            this.timerText.text = `Tijd tot vertrek : ${this.timer}`
-            setTimeout(() => {this.startTimer()}, 1000)
+            }else {
+                //timer has not ran out
+                console.log('tik tok')
+                this.timerText.text = `Tijd tot vertrek : ${this.timer}`
+                setTimeout(() => {this.startTimer()}, 1000)
+            }
         }
     }
 }

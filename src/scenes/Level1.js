@@ -20,13 +20,14 @@ export class Level1 extends Scene {
     trampos = new Vector (-200, 450)
 
     //time in this level before the tram leaves
-    leveltime = 60
+    leveltime = 8
 
     uivar
 
 
     onInitialize(_engine) {
-        _engine.showDebug(true)
+        this.game = _engine
+        this.game.showDebug(true)
         console.log("1st level");
 
         this.player = new Player()
@@ -50,24 +51,22 @@ export class Level1 extends Scene {
         this.background.z = -1
         this.background.scale = new Vector(1.5, 1.45)
         this.add(this.background)
-
-
     }
 
     onActivate(_context) {
         //reset all in level
         this.resetLevel()
-
-        //reset collectibles UI
-        this.collectvar.ResetCollectiblesUI()
-
-        //reset ui
-        this.uivar.resetAll(this.leveltime, this.trampos)
+        this.uivar.startTimer()
     }
 
     onPreUpdate(_engine, _delta) {
         if (this.ticket.isKilled()){
             this.collectvar.PickupTicket()
+        }
+
+        if (this.player.isKilled()){
+            this.uivar.ingestapt = true
+            this.uivar.tram.winTram()
         }
     }
 
@@ -78,6 +77,7 @@ export class Level1 extends Scene {
         }
     }
 
+
     resetLevel(){
         //reset player
         //reset velocity
@@ -87,8 +87,21 @@ export class Level1 extends Scene {
         //put back to spawn
         this.player.pos = this.startpos
 
+        //reset collectibles UI
+        this.collectvar.ResetCollectiblesUI()
+
+        //reset ui
+        this.uivar.resetAll(this.leveltime, this.trampos)
+
         if (this.ticket.isKilled()){
             this.add(this.ticket)
         }
+
+        if (this.player.isKilled()){
+            this.add(this.player)
+        }
+
+        this.uivar.tram.isPlaying = true
+        this.uivar.ingestapt = false
     }
 }

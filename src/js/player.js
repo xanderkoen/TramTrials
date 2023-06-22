@@ -14,9 +14,9 @@ import { Resources } from './resources.js'
 import {Tram} from "./tram";
 import {Ticket} from "./ticket";
 import {Collectibles} from "./collectibles.js";
+import {UI} from "./ui.js";
 
 export class Player extends Actor {
-    engine;
     game;
     playerAnimations = []
     direction = 'R'
@@ -145,8 +145,7 @@ export class Player extends Actor {
     }
     entertram(event){
         if (event.other instanceof Tram && this.ticket){
-            this.game.goToScene('Beginscherm')
-
+            this.kill()
             console.log('je hebt de tram gehaald met ticket a sahbi')
 
 

@@ -6,6 +6,7 @@ export class Tram extends Actor {
 
     game
     startpos = new Vector (-200, 480)
+    isPlaying = false
 
     constructor(x, y) {
         super({ width: Resources.Tram.width, height: 100 }) // collision box!
@@ -32,10 +33,19 @@ export class Tram extends Actor {
         this.vel = new Vector(550, 0)
         console.log('tram vertrekt')
         //after 2 seconds go to game over
-
         setTimeout(() => {this.game.goToScene('Eindscherm')}, 3000)
         this.body.collisionType = CollisionType.PreventCollision
+    }
 
+    winTram(){
+        if (this.isPlaying) {
+            this.vel = new Vector(550, 0)
+            //console.log('tram vertrekt')
+            setTimeout(() => {this.game.goToScene('Beginscherm')}, 3000)
+            //after 2 seconds go to game over
+            this.body.collisionType = CollisionType.PreventCollision
+            this.isPlaying = false
+        }
     }
 
 
