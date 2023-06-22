@@ -4,7 +4,6 @@ import {Player} from "./player";
 
 export class Ticket extends Actor {
     cardAnimations = []
-    ticket = false
     constructor(x, y) {
         super({ width: Resources.Ground.width / 2, height: Resources.Ground.height }) // collision box!
         this.pos = new Vector(x,y)
@@ -29,10 +28,8 @@ export class Ticket extends Actor {
         this.body.collisionType = CollisionType.Fixed
     }
 
-    pickup() {
-
-       this.kill()
-        this.ticket = true
-        console.log('je hebt de tram ticket opgehaald a sahbi')
+    Pickup() {
+        this.kill()
     }
+
 }

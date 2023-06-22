@@ -13,9 +13,10 @@ import {
 import { Resources } from './resources.js'
 import {Tram} from "./tram";
 import {Ticket} from "./ticket";
+import {Collectibles} from "./collectibles.js";
+import {UI} from "./ui.js";
 
 export class Player extends Actor {
-    engine;
     game;
     playerAnimations = []
     direction = 'R'
@@ -80,7 +81,8 @@ export class Player extends Actor {
 
     onCollision(event) {
             if (event.other instanceof Ticket ) {
-                event.other.pickup()
+                event.other.Pickup()
+
                 this.ticket = true
             }
         }
@@ -143,9 +145,8 @@ export class Player extends Actor {
     }
     entertram(event){
         if (event.other instanceof Tram && this.ticket){
-            this.game.goToScene('Beginscherm')
-
-            console.log('xander heeft kleine pik, en je hebt de tram gehaald met ticket a sahbi')
+            this.kill()
+            console.log('je hebt de tram gehaald met ticket a sahbi')
 
 
         }if (event.other instanceof Tram && !this.ticket){

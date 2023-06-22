@@ -10,6 +10,9 @@ import {Collectibles} from "../js/collectibles.js";
 
 export class Level1 extends Scene {
 
+    //level number
+    levelint = 1
+
     //player start position
     startpos = new Vector(400,400)
 
@@ -17,13 +20,14 @@ export class Level1 extends Scene {
     trampos = new Vector (-200, 450)
 
     //time in this level before the tram leaves
-    leveltime = 60
+    leveltime = 8
 
     uivar
 
 
     onInitialize(_engine) {
-        _engine.showDebug(true)
+        this.game = _engine
+        this.game.showDebug(true)
         console.log("1st level");
 
         this.player = new Player()
@@ -31,8 +35,8 @@ export class Level1 extends Scene {
 
         this.createGround()
 
-        const tickit = new Ticket(946, 480)
-        this.add(tickit)
+        this.ticket = new Ticket(946, 480)
+        this.add(this.ticket)
 
         //UI
         this.uivar = new UI()
@@ -47,19 +51,23 @@ export class Level1 extends Scene {
         this.background.z = -1
         this.background.scale = new Vector(1.5, 1.45)
         this.add(this.background)
-
-
-        setTimeout(() => {this.collectvar.PickupTicket()}, 10000)
-        setTimeout(() => {this.collectvar.PickupSouvenir()}, 12000)
-
     }
 
     onActivate(_context) {
         //reset all in level
         this.resetLevel()
+        this.uivar.startTimer()
+    }
 
-        //reset ui
-        this.uivar.resetAll(this.leveltime, this.trampos)
+    onPreUpdate(_engine, _delta) {
+        if (this.ticket.isKilled()){
+            this.collectvar.PickupTicket()
+        }
+
+        if (this.player.isKilled()){
+            this.uivar.ingestapt = true
+            this.uivar.tram.winTram()
+        }
     }
 
     createGround() {
@@ -67,17 +75,34 @@ export class Level1 extends Scene {
             const ground = new Ground(pos.x, pos.y)
             this.add(ground)
         }
-
-        console.log(Resources.GroundData)
     }
+
 
     resetLevel(){
         //reset player
         //reset velocity
         this.player.vel.y = 0
         this.player.vel.x = 0
-
+        this.player.ticket = false
         //put back to spawn
         this.player.pos = this.startpos
+
+        //reset collectibles UI
+        this.collectvar.ResetCollectiblesUI()
+
+        //reset ui
+        this.uivar.resetAll(this.leveltime, this.trampos)
+
+        if (this.ticket.isKilled()){
+            this.add(this.ticket)
+        }
+
+        if (this.player.isKilled()){
+            this.add(this.player)
+        }
+
+        //super belangrijk: NIET AANPASSEN!!!
+        this.uivar.tram.isPlaying = true
+        this.uivar.ingestapt = false
     }
 }
