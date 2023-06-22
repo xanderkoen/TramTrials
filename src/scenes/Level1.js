@@ -83,7 +83,7 @@ export class Level1 extends Scene {
         //reset velocity
         this.player.vel.y = 0
         this.player.vel.x = 0
-
+        this.player.ticket = false
         //put back to spawn
         this.player.pos = this.startpos
 
@@ -101,6 +101,7 @@ export class Level1 extends Scene {
             this.add(this.player)
         }
 
+        //super belangrijk: NIET AANPASSEN!!!
         this.uivar.tram.isPlaying = true
         this.uivar.ingestapt = false
     }
