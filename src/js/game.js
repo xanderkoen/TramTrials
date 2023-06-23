@@ -4,6 +4,7 @@ import {  ResourceLoader } from './resources.js'
 import { Level1 } from "../scenes/Level1.js";
 import {Beginscherm} from "../scenes/beginscherm.js";
 import {Eindscherm} from "../scenes/eindscherm";
+import {Scorescene} from "../scenes/scorescene.js";
 
 export class Game extends Engine {
 
@@ -26,15 +27,14 @@ export class Game extends Engine {
 
     startGame() {
         //maak de levels aan
-        const firstLevel = new Level1()
-
         //voeg de levels toe als scene
-        this.addScene('Level1',firstLevel)
+        this.addScene('Level1', new Level1())
         this.addScene('Beginscherm', new Beginscherm())
         this.addScene('Eindscherm', new Eindscherm())
+        this.addScene('ScoreScene', new Scorescene())
 
         //ga naar het de scene
-        this.goToScene('Beginscherm')
+        this.goToScene('Scorescene')
 
     }
 }
