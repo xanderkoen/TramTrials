@@ -62,7 +62,7 @@ export class UI extends ScreenElement {
         this.timerText.text = `Tijd tot vertrek : ${this.timer}`
     }
 
-    startTimer() {
+    startTimer(number) {
         if (!this.ingestapt){
             this.timer --
 
@@ -72,14 +72,15 @@ export class UI extends ScreenElement {
 
                 this.timerText.text = `Je bent te laat`
 
+
                 //move tram
-                this.tram.moveTram()
+                this.tram.moveTram(number)
 
             }else {
 
                 //timer has not ran out
                 this.timerText.text = `Tijd tot vertrek : ${this.timer}`
-                setTimeout(() => {this.startTimer()}, 1000)
+                setTimeout(() => {this.startTimer(number)}, 1000)
             }
         }
     }

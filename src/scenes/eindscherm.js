@@ -4,6 +4,7 @@ import {Resources} from "../js/resources";
 
 export class Eindscherm extends Scene {
     game;
+    levelint = 0
     constructor() {
         super({displayMode: 'FitScreenAndFill'});
     }
@@ -19,14 +20,21 @@ export class Eindscherm extends Scene {
         this.add(background);
     }
 
+    onActivate(ctx) {
+        if (ctx.data) {
+            this.levelint = ctx.data.level
+            console.log(this.levelint)
+        }
+    }
+
     onPreUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Input.Keys.Enter)) {
             //reset level
 
-
-
-            //
-            this.game.goToScene('Beginscherm')
+            switch (true) {
+                case this.levelint === 1:
+                this.game.goToScene('Level1')
+            }
         }
     }
 

@@ -31,7 +31,7 @@ export class Level1 extends Scene {
     Souvenirvel = new Vector(-Math.random() * 1000, -250)
 
     //time in this level before the tram leaves
-    leveltime = 60
+    leveltime = 5
 
     uivar
 
@@ -82,7 +82,7 @@ export class Level1 extends Scene {
     onActivate(_context) {
         //reset all in level
         this.resetLevel()
-        this.uivar.startTimer()
+        this.uivar.startTimer(this.levelint)
     }
 
     onPreUpdate(_engine, _delta) {

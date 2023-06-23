@@ -29,11 +29,11 @@ export class Tram extends Actor {
         this.body.collisionType = CollisionType.Fixed
     }
 
-    moveTram() {
+    moveTram(number) {
         this.vel = new Vector(550, 0)
         console.log('tram vertrekt')
         //after 2 seconds go to game over
-        setTimeout(() => {this.game.goToScene('Eindscherm')}, 3000)
+        setTimeout(() => {this.game.goToScene('Eindscherm', {level: number})}, 3000)
         this.body.collisionType = CollisionType.PreventCollision
     }
 
