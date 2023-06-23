@@ -17,9 +17,9 @@ export class Tramkabel extends Trampaal {
             image:Resources.Tramkabelsheet,
             grid: {
                 rows: 1,
-                columns: 2,
+                columns: 4,
                 spriteHeight:375 ,
-                spriteWidth: 1443,
+                spriteWidth: Resources.Tramkabelsheet.width / 4,
             }
         })
         this.tramkabelAnimations['tramkabelsheet'] = Animation.fromSpriteSheet(TramkabelSheett, range(0, 2), 500);
