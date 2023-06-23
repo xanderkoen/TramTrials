@@ -15,6 +15,10 @@ import gameover from '../images/gameove.png'
 import trampaal from '../images/trampaal.png'
 import tramkabel from '../images/tramkabel.png'
 import tramkabelsheet from '../images/tramkabelsheet.png'
+import kaartUI from '../images/chipUI.png'
+import souvUI from '../images/souvUI.png'
+import pot from '../images/pot.png'
+import potcrack from '../images/potcrack.png'
 
 
 
