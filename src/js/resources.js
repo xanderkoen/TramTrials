@@ -12,10 +12,9 @@ import kaart from '../images/kaart.png'
 import logo from '../images/TTLogo.png'
 import mainmenu from '../images/MainMenu.png'
 import gameover from '../images/gameove.png'
-import kaartUI from '../images/chipUI.png'
-import souvUI from '../images/souvUI.png'
-import pot from '../images/pot.png'
-import potcrack from '../images/potcrack.png'
+import trampaal from '../images/trampaal.png'
+import tramkabel from '../images/tramkabel.png'
+import tramkabelsheet from '../images/tramkabelsheet.png'
 
 
 
@@ -34,10 +33,14 @@ const Resources = {
     MainMenu: new ImageSource(mainmenu),
     Gameover: new ImageSource(gameover),
     Logo: new ImageSource(logo),
+    Trampaal: new ImageSource(trampaal),
+    Tramkabel: new ImageSource(tramkabel),
+    Tramkabelsheet: new ImageSource(tramkabelsheet),
     KaartUI: new ImageSource(kaartUI),
     SouvUI: new ImageSource(souvUI),
     Pot: new ImageSource(pot),
     Potcrack: new ImageSource(potcrack),
+
 }
 const resourceArray = []
 for (const key in Resources) {

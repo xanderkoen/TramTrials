@@ -6,6 +6,7 @@ export class Ground extends Actor {
     constructor(x, y) {
         super({ width: Resources.Ground.width, height: Resources.Ground.height }) // collision box!
         this.pos = new Vector(x,y)
+        this.z = -1
     }
 
     onInitialize(engine) {
