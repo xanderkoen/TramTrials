@@ -7,6 +7,7 @@ import {Eindscherm} from "./eindscherm";
 import {Tram} from "../js/tram";
 import {UI} from "../js/ui.js";
 import {Collectibles} from "../js/collectibles.js";
+import {Trampaal} from "../js/trampaal";
 
 export class Level1 extends Scene {
 
@@ -27,11 +28,17 @@ export class Level1 extends Scene {
 
     onInitialize(_engine) {
         this.game = _engine
-        this.game.showDebug(true)
+        this.game.showDebug(false)
         console.log("1st level");
 
         this.player = new Player()
         this.add(this.player)
+
+        this.trampaal = new Trampaal(20,330)
+        this.add(this.trampaal)
+
+        this.trampaal2 = new Trampaal(1200,330)
+        this.add(this.trampaal2)
 
         this.createGround()
 
@@ -48,7 +55,7 @@ export class Level1 extends Scene {
 
         this.background = new Actor()
         this.background.graphics.use(Resources.Achtergrond.toSprite())
-        this.background.z = -1
+        this.background.z = -2
         this.background.scale = new Vector(1.5, 1.45)
         this.add(this.background)
     }

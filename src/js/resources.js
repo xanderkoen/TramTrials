@@ -12,6 +12,7 @@ import kaart from '../images/kaart.png'
 import logo from '../images/TTLogo.png'
 import mainmenu from '../images/Main_Menu.png'
 import gameover from '../images/gameove.png'
+import trampaal from '../images/trampaal.png'
 
 
 
@@ -29,7 +30,8 @@ const Resources = {
     Kaart: new ImageSource(kaart),
     MainMenu: new ImageSource(mainmenu),
     Gameover: new ImageSource(gameover),
-    Logo: new ImageSource(logo)
+    Logo: new ImageSource(logo),
+    Trampaal: new ImageSource(trampaal)
 }
 const resourceArray = []
 for (const key in Resources) {
