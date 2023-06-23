@@ -103,8 +103,10 @@ export class Level1 extends Scene {
         }
 
         if (this.souvenir.isKilled() && !this.pickedup) {
-            this.collectvar.PickupSouvenir()
-            this.pickedup = true
+            if (this.spawnSouvenir){
+                this.collectvar.PickupSouvenir()
+                this.pickedup = true
+            }
         }
     }
 
@@ -134,6 +136,16 @@ export class Level1 extends Scene {
             this.add(this.ticket)
         }
 
+        //add pot back
+        if (this.goldpot.isKilled()){
+            this.add(this.goldpot)
+        }
+
+        //remove souvenir if its still there
+        if (!this.souvenir.isKilled()){
+            this.souvenir.pickup()
+        }
+
         if (this.player.isKilled()){
             this.add(this.player)
         }
@@ -141,5 +153,7 @@ export class Level1 extends Scene {
         //super belangrijk: NIET AANPASSEN!!!
         this.uivar.tram.isPlaying = true
         this.uivar.ingestapt = false
+        this.spawnSouvenir = false
+        this.pickedup = false
     }
 }

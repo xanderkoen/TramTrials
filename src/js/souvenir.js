@@ -3,13 +3,18 @@ import { Resources } from './resources.js'
 
 export class Souvenir extends Actor {
 
+    posvar
+    velvar
+
     constructor(pos, vel) {
         super({
             width: Resources.Test.width, height: Resources.Test.height,
             collider: Shape.Circle(60)
         })
         this.pos = pos
+        this.posvar = pos
         this.vel = vel
+        this.velvar = vel
     }
 
     onInitialize(engine) {
@@ -20,9 +25,9 @@ export class Souvenir extends Actor {
     }
 
     spawn(){
-        //random velocity
-        this.velx = -Math.random() * 100
         this.body.bounciness = 1
+        this.pos = this.posvar
+        this.vel = this.velvar
         this.body.useGravity = true
     }
 
