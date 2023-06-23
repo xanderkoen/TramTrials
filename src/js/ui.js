@@ -25,6 +25,7 @@ export class UI extends ScreenElement {
     timerText
     ingestapt = false
 
+
     constructor() {
         super({x: 10, y: 10})
     }
@@ -75,8 +76,8 @@ export class UI extends ScreenElement {
                 this.tram.moveTram()
 
             }else {
+
                 //timer has not ran out
-                console.log('tik tok')
                 this.timerText.text = `Tijd tot vertrek : ${this.timer}`
                 setTimeout(() => {this.startTimer()}, 1000)
             }

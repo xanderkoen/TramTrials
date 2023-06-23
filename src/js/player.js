@@ -15,6 +15,8 @@ import {Tram} from "./tram";
 import {Ticket} from "./ticket";
 import {Collectibles} from "./collectibles.js";
 import {UI} from "./ui.js";
+import {Goldpot} from "./Goldpot.js";
+import {Souvenir} from "./souvenir.js";
 
 export class Player extends Actor {
     game;
@@ -72,7 +74,6 @@ export class Player extends Actor {
         this.playerAnimations['walkSprite'] = Animation.fromSpriteSheet(WalkSheet, range(0, 4), 160);
         this.playerAnimations['jumpSprite'] = Animation.fromSpriteSheet(JumpSheet, range(0, 3), 75, AnimationStrategy.Freeze);
         this.game = _engine
-        this.on('collisionstart', (event) => this.entertram(event))
 
         //onCollision start
         this.on('collisionstart', (event) => this.onCollision(event))
@@ -80,12 +81,28 @@ export class Player extends Actor {
     }
 
     onCollision(event) {
+            //player picks up ov chipkaart
             if (event.other instanceof Ticket ) {
                 event.other.Pickup()
 
                 this.ticket = true
             }
-        }
+
+            //player gets in tram
+            if (event.other instanceof Tram && this.ticket){
+                this.kill()
+            }
+
+            //player breaks souvenir pot
+            if (event.other instanceof  Goldpot) {
+                event.other.Pickup()
+            }
+
+            //player picks up souvenir
+            if (event.other instanceof Souvenir ) {
+                event.other.pickup()
+            }
+    }
 
     onPreUpdate(engine, delta) {
         let speedvar = 0;
@@ -144,13 +161,6 @@ export class Player extends Actor {
 
     }
     entertram(event){
-        if (event.other instanceof Tram && this.ticket){
-            this.kill()
-            console.log('je hebt de tram gehaald met ticket a sahbi')
 
-
-        }if (event.other instanceof Tram && !this.ticket){
-            console.log('je hebt geen ticket a sahbi')
-        }
     }
 }

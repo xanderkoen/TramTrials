@@ -25,7 +25,7 @@ export class Collectibles extends ScreenElement {
    collectibles
 
     constructor() {
-        super({x: 1100, y: 10})
+        super({x: 1075, y: 10})
     }
 
     ticket
@@ -38,7 +38,7 @@ export class Collectibles extends ScreenElement {
             members: [
                 {
                     name: "sex",
-                    graphic: Resources.Test.toSprite(),
+                    graphic: Resources.KaartUI.toSprite(),
                     pos: new Vector(0,0),
                 }
             ]
@@ -49,15 +49,15 @@ export class Collectibles extends ScreenElement {
             members: [
                 {
                     name: 'sex2',
-                    graphic: Resources.Test.toSprite(),
-                    pos: new Vector(Resources.Test.width + 200,0),
+                    graphic: Resources.SouvUI.toSprite(),
+                    pos: new Vector(Resources.KaartUI.width / 2 + 50,0),
                 }
             ]
         })
-        this.ticket.scale = new Vector(0.1,0.1)
         this.graphics.add(this.ticket)
+        this.ticket.scale = new Vector(0.5,0.5)
+        this.souvenir.scale = new Vector(0.5,0.5)
         this.graphics.hide(this.ticket)
-        this.souvenir.scale = new Vector(0.1,0.1)
         this.graphics.add(this.souvenir)
         this.graphics.hide(this.souvenir)
     }

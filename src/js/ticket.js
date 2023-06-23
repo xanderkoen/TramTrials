@@ -1,6 +1,5 @@
 import {CollisionType, Actor, Vector, SpriteSheet, Animation, range} from "excalibur"
 import { Resources } from './resources.js'
-import {Player} from "./player";
 
 export class Ticket extends Actor {
     cardAnimations = []

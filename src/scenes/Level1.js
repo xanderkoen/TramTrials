@@ -1,17 +1,22 @@
-import {Color, Font, Label, Scene, Timer, Vector, Engine, Delay, Actor, ParallaxComponent} from "excalibur";
+import {Scene, Vector, Actor,} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
 import { Ticket } from "../js/ticket.js"
 import {Ground} from "../js/Ground";
-import {Eindscherm} from "./eindscherm";
-import {Tram} from "../js/tram";
 import {UI} from "../js/ui.js";
 import {Collectibles} from "../js/collectibles.js";
+import {Souvenir} from "../js/souvenir.js";
+import {Goldpot} from "../js/Goldpot.js";
 
 export class Level1 extends Scene {
 
     //level number
     levelint = 1
+
+    //niet veranderen!
+    spawnSouvenir = false
+
+    pickedup = false
 
     //player start position
     startpos = new Vector(400,400)
@@ -19,8 +24,12 @@ export class Level1 extends Scene {
     //tram start position
     trampos = new Vector (-200, 450)
 
+    //positie souvenir
+    Souvenirpos = new Vector(1100, 300)
+    Souvenirvel = new Vector(-Math.random() * 1000, -250)
+
     //time in this level before the tram leaves
-    leveltime = 8
+    leveltime = 60
 
     uivar
 
@@ -35,14 +44,20 @@ export class Level1 extends Scene {
 
         this.createGround()
 
+        //tramticket
         this.ticket = new Ticket(946, 480)
         this.add(this.ticket)
 
+        //souvenir
+        this.goldpot = new Goldpot(this.Souvenirpos)
+        this.add(this.goldpot)
+
+        this.souvenir = new Souvenir(this.Souvenirpos, this.Souvenirvel)
         //UI
         this.uivar = new UI()
         this.add(this.uivar)
 
-        //Collectibles
+        //CollectiblesUI
         this.collectvar = new Collectibles()
         this.add(this.collectvar)
 
@@ -68,6 +83,18 @@ export class Level1 extends Scene {
             this.uivar.ingestapt = true
             this.uivar.tram.winTram()
         }
+
+        if (this.goldpot.isKilled() && !this.spawnSouvenir){
+                this.add(this.souvenir)
+                this.souvenir.spawn()
+                this.spawnSouvenir = true
+
+        }
+
+        if (this.souvenir.isKilled() && !this.pickedup) {
+            this.collectvar.PickupSouvenir()
+            this.pickedup = true
+        }
     }
 
     createGround() {
@@ -76,7 +103,6 @@ export class Level1 extends Scene {
             this.add(ground)
         }
     }
-
 
     resetLevel(){
         //reset player
