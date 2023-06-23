@@ -8,7 +8,7 @@ export class Tramkabel extends Trampaal {
         super({width: 0,height: 0});
         this.pos =  new Vector (x, y)
 
-        this.scale = new Vector(0.68, 0.5);
+        this.scale = new Vector(0.5649, 0.5);
 
     }
     onInitialize(_engine) {
@@ -17,9 +17,9 @@ export class Tramkabel extends Trampaal {
             image:Resources.Tramkabelsheet,
             grid: {
                 rows: 1,
-                columns: 4,
+                columns: 2,
                 spriteHeight:375 ,
-                spriteWidth: Resources.Tramkabelsheet.width / 4,
+                spriteWidth: Resources.Tramkabelsheet.width / 2 ,
             }
         })
         this.tramkabelAnimations['tramkabelsheet'] = Animation.fromSpriteSheet(TramkabelSheett, range(0, 2), 500);

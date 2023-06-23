@@ -47,10 +47,10 @@ export class Level1 extends Scene {
         this.trampaal = new Trampaal(20,330)
         this.add(this.trampaal)
 
-        this.tramkabel = new Tramkabel(610, 158)
+        this.tramkabel = new Tramkabel(662, 175)
         this.add(this.tramkabel)
 
-        this.trampaal2 = new Trampaal(1200,330)
+        this.trampaal2 = new Trampaal(1304,330)
         this.add(this.trampaal2)
 
         this.createGround()
