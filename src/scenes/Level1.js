@@ -8,6 +8,7 @@ import {Tram} from "../js/tram";
 import {UI} from "../js/ui.js";
 import {Collectibles} from "../js/collectibles.js";
 import {Trampaal} from "../js/trampaal";
+import {Tramkabel} from "../js/tramkabel";
 
 export class Level1 extends Scene {
 
@@ -21,7 +22,7 @@ export class Level1 extends Scene {
     trampos = new Vector (-200, 450)
 
     //time in this level before the tram leaves
-    leveltime = 8
+    leveltime = 80
 
     uivar
 
@@ -36,6 +37,9 @@ export class Level1 extends Scene {
 
         this.trampaal = new Trampaal(20,330)
         this.add(this.trampaal)
+
+        this.tramkabel = new Tramkabel(610, 158)
+        this.add(this.tramkabel)
 
         this.trampaal2 = new Trampaal(1200,330)
         this.add(this.trampaal2)

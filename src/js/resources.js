@@ -13,6 +13,8 @@ import logo from '../images/TTLogo.png'
 import mainmenu from '../images/Main_Menu.png'
 import gameover from '../images/gameove.png'
 import trampaal from '../images/trampaal.png'
+import tramkabel from '../images/tramkabel.png'
+import tramkabelsheet from '../images/tramkabelsheet.png'
 
 
 
@@ -31,7 +33,9 @@ const Resources = {
     MainMenu: new ImageSource(mainmenu),
     Gameover: new ImageSource(gameover),
     Logo: new ImageSource(logo),
-    Trampaal: new ImageSource(trampaal)
+    Trampaal: new ImageSource(trampaal),
+    Tramkabel: new ImageSource(tramkabel),
+    Tramkabelsheet: new ImageSource(tramkabelsheet),
 }
 const resourceArray = []
 for (const key in Resources) {

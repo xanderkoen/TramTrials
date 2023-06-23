@@ -11,14 +11,14 @@ export class Tram extends Actor {
     constructor(x, y) {
         super({ width: Resources.Tram.width, height: 100 }) // collision box!
         this.pos = this.startpos
-        this.scale = new Vector(1, 1);
+        this.scale = new Vector(1.4, 1.4);
     }
 
     onInitialize(_engine) {
         this.graphics.use(Resources.Tram.toSprite())
         this.body.collisionType = CollisionType.Fixed
         this.game = _engine
-        this.anchor = new Vector(0.5, 0.5)
+        this.anchor = new Vector(0.5, 0.64)
 
     }
 
