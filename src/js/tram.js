@@ -9,7 +9,7 @@ export class Tram extends Actor {
     isPlaying = false
 
     constructor(x, y) {
-        super({ width: Resources.Tram.width, height: 100 }) // collision box!
+        super({ width: Resources.Tram.width, height: 146 }) // collision box!
         this.pos = this.startpos
         this.scale = new Vector(1.4, 1.4);
     }
