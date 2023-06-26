@@ -5,6 +5,7 @@ import { Level1 } from "../scenes/Level1.js";
 import {Beginscherm} from "../scenes/beginscherm.js";
 import {Eindscherm} from "../scenes/eindscherm";
 import {Scorescene} from "../scenes/scorescene.js";
+import {Level2} from "../scenes/Level2";
 
 export class Game extends Engine {
 
@@ -29,6 +30,7 @@ export class Game extends Engine {
         //maak de levels aan
         //voeg de levels toe als scene
         this.addScene('Level1', new Level1())
+        this.addScene('Level2', new Level2())
         this.addScene('Beginscherm', new Beginscherm())
         this.addScene('Eindscherm', new Eindscherm())
         this.addScene('ScoreScene', new Scorescene())

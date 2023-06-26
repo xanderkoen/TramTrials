@@ -59,10 +59,12 @@ export class Scorescene extends Scene {
             switch (true) {
                 case this.levelint === 1:
                     this.game.goToScene('Level1')
+                    console.log("level1")
                     break;
 
                 case this.levelint === 2:
-                    this.game.goToScene('level1') // change to level2 once added
+                    this.game.goToScene('Level2') // change to level2 once added
+                        console.log("level2")
                     break;
             }
         }

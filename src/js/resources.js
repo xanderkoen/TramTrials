@@ -1,5 +1,6 @@
 import {Color, ImageSource, Loader, Resource} from 'excalibur'
 import Achtergrond from '../images/Achtergrond2.png'
+import Achtergrond2 from '../images/Achtergrond.png'
 import Grass from '../images/Grass.png'
 import Idlesheet from '../images/IdleSpriteSheet.png'
 import Walkingsheet from '../images/walkingSheet.png'
@@ -25,6 +26,7 @@ import potcrack from '../images/potcrack.png'
 const Resources = {
     Player: new ImageSource(player),
     Achtergrond: new ImageSource(Achtergrond),
+    Achtergrond2: new ImageSource(Achtergrond2),
     Grass: new ImageSource(Grass),
     Idlesheet: new ImageSource(Idlesheet),
     Walkingsheet: new ImageSource(Walkingsheet),
