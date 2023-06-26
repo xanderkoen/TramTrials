@@ -1,10 +1,12 @@
-import {BaseAlign, Color, Font, FontUnit, Label, Scene, Text, Vector,} from "excalibur";
-import {Resources} from "../js/resources";
+import {BaseAlign, Color, Font, FontUnit, Input, Label, Scene, Text, Vector,} from "excalibur";
 
 
 export class Scorescene extends Scene {
     game;
     levelint = 0
+    tijd = 0
+    souvenir = false
+    souvtext = "leeg"
 
     constructor() {
         super({displayMode: 'FitScreenAndFill'});
@@ -19,7 +21,7 @@ export class Scorescene extends Scene {
                 size: 32,
                 color: Color.White,
             }),
-            text: 'Je had nog 1 seconde over \N Souvenir opgepakt : Ja',
+            text: `Je had nog ${this.tijd} seconde over \n Je hebt het ${this.souvtext} Souvenir opgepakt`,
             pos: new Vector(250, 50),
         })
 
@@ -27,6 +29,44 @@ export class Scorescene extends Scene {
 
     }
 
+    onActivate(ctx) {
+        if (ctx.data) {
+            this.levelint = ctx.data.level
+            this.tijd = ctx.data.tijd
+            this.souvenir = ctx.data.souvenir
+
+            console.log(this.levelint, this.tijd, this.souvenir)
+        }
+        this.updateText()
+    }
+
+    updateText() {
+
+        if (this.souvenir === true){
+            this.souvtext = "wel"
+        }else{
+            this.souvtext = "niet"
+        }
+
+        this.textScore.text = `Je had nog ${this.tijd} seconde over \n Je hebt het Souvenir ${this.souvtext} opgepakt`
+    }
+
+    onPreUpdate(_engine, _delta) {
+        if (this.game.input.keyboard.wasPressed(Input.Keys.Enter)) {
+
+            this.levelint++
+
+            switch (true) {
+                case this.levelint === 1:
+                    this.game.goToScene('Level1')
+                    break;
+
+                case this.levelint === 2:
+                    this.game.goToScene('level1') // change to level2 once added
+                    break;
+            }
+        }
+    }
 
 
 }

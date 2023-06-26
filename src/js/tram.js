@@ -37,11 +37,11 @@ export class Tram extends Actor {
         this.body.collisionType = CollisionType.PreventCollision
     }
 
-    winTram(){
+    winTram(levelint, tijd, souvenir){
         if (this.isPlaying) {
             this.vel = new Vector(550, 0)
             //console.log('tram vertrekt')
-            setTimeout(() => {this.game.goToScene('ScoreScene')}, 3000)
+            setTimeout(() => {this.game.goToScene('ScoreScene', {level: levelint, tijd: tijd, souvenir:souvenir})},3000)
             //after 2 seconds go to game over
             this.body.collisionType = CollisionType.PreventCollision
             this.isPlaying = false

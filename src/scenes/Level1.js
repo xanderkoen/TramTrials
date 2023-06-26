@@ -31,7 +31,7 @@ export class Level1 extends Scene {
     Souvenirvel = new Vector(-Math.random() * 1000, -250)
 
     //time in this level before the tram leaves
-    leveltime = 5
+    leveltime = 10
 
     uivar
 
@@ -92,7 +92,7 @@ export class Level1 extends Scene {
 
         if (this.player.isKilled()){
             this.uivar.ingestapt = true
-            this.uivar.tram.winTram()
+            this.uivar.tram.winTram(this.levelint, this.uivar.timer, this.pickedup)
         }
 
         if (this.goldpot.isKilled() && !this.spawnSouvenir){

@@ -34,7 +34,7 @@ export class Game extends Engine {
         this.addScene('ScoreScene', new Scorescene())
 
         //ga naar het de scene
-        this.goToScene('Scorescene')
+        this.goToScene('Beginscherm')
 
     }
 }
