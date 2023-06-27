@@ -1,4 +1,5 @@
-import {BaseAlign, Color, Font, FontUnit, Input, Label, Scene, Text, Vector,} from "excalibur";
+import {Actor, BaseAlign, Color, Font, FontUnit, Input, Label, Scene, Text, Vector,} from "excalibur";
+import {Resources} from "../js/resources.js";
 
 
 export class Scorescene extends Scene {
@@ -15,6 +16,13 @@ export class Scorescene extends Scene {
     onInitialize(engine) {
         this.game = engine;
 
+        const background = new Actor();
+        background.graphics.use(Resources.scorescreen.toSprite());
+        background.pos = new Vector(0, 0);
+        background.anchor = new Vector(0, 0);
+        background.scale = new Vector(4.3, 4)
+        this.add(background);
+
         this.textScore = new Label({
             font: new Font({
                 family: 'Arial',
@@ -22,7 +30,7 @@ export class Scorescene extends Scene {
                 color: Color.White,
             }),
             text: `Je had nog ${this.tijd} seconde over \n Je hebt het ${this.souvtext} Souvenir opgepakt`,
-            pos: new Vector(250, 50),
+            pos: new Vector(200, 50),
         })
 
         this.add(this.textScore)
@@ -59,11 +67,16 @@ export class Scorescene extends Scene {
             switch (true) {
                 case this.levelint === 1:
                     this.game.goToScene('Level1')
+                    console.log("level1")
                     break;
 
-                case this.levelint === 2:
-                    this.game.goToScene('level1') // change to level2 once added
+                case this.levelint >= 2:
+                    this.game.goToScene('Level2') // change to level2 once added
+                        console.log("level2")
                     break;
+
+                case this.levelint === 3:
+                    this.game.goToScene("Credits")
             }
         }
     }
