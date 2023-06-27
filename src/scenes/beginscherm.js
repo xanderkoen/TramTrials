@@ -16,7 +16,7 @@ export class Beginscherm extends Scene {
 
     onPreUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Input.Keys.Enter)) {
-            this.game.goToScene('Level2')
+            this.game.goToScene('Level1')
         }
     }
 }

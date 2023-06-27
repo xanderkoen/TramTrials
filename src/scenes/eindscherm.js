@@ -37,7 +37,7 @@ export class Eindscherm extends Scene {
                     break;
 
                 case this.levelint === 2:
-                    this.game.goToScene('Level1') // change to level 2 once added
+                    this.game.goToScene('Level2') // change to level 2 once added
                     break;
             }
         }

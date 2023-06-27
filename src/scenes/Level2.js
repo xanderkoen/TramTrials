@@ -2,18 +2,18 @@ import {Scene, Vector, Actor,} from "excalibur";
 import { Resources } from "../js/resources.js";
 import {Player} from "../js/player";
 import { Ticket } from "../js/ticket.js"
-import {Ground} from "../js/Ground";
 import {UI} from "../js/ui.js";
 import {Collectibles} from "../js/collectibles.js";
 import {Souvenir} from "../js/souvenir.js";
 import {Goldpot} from "../js/Goldpot.js";
 import {Trampaal} from "../js/trampaal";
 import {Tramkabel} from "../js/tramkabel";
+import {Ground2} from "../js/ground2";
 
 export class Level2 extends Scene {
 
     //level number
-    levelint = 1
+    levelint = 2
 
     //niet veranderen!
     spawnSouvenir = false
@@ -76,7 +76,7 @@ export class Level2 extends Scene {
         this.background.graphics.use(Resources.Achtergrond2.toSprite())
         this.background.z = -2
         this.background.scale = new Vector(0.7, 0.7)
-        this.background.pos = new Vector(600, 250)
+        this.background.pos = new Vector(600, 282)
         this.add(this.background)
     }
 
@@ -112,8 +112,8 @@ export class Level2 extends Scene {
     }
 
     createGround() {
-        for (let pos of Resources.GroundData.path) {
-            const ground = new Ground(pos.x, pos.y)
+        for (let pos of Resources.Ground2Data.path) {
+            const ground = new Ground2(pos.x, pos.y)
             this.add(ground)
         }
     }
