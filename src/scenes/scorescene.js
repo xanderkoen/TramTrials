@@ -70,7 +70,7 @@ export class Scorescene extends Scene {
                     console.log("level1")
                     break;
 
-                case this.levelint >= 2:
+                case this.levelint === 2:
                     this.game.goToScene('Level2') // change to level2 once added
                         console.log("level2")
                     break;

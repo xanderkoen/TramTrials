@@ -15,7 +15,7 @@ export class Credits extends Scene {
         background.graphics.use(Resources.eind.toSprite());
         background.pos = new Vector(0, 0);
         background.anchor = new Vector(0, 0);
-        background.scale = new Vector(1.85, 1.75)
+        background.scale = new Vector(4.3, 4)
         this.add(background);
     }
     onPreUpdate(engine) {
