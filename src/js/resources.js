@@ -20,6 +20,8 @@ import kaartUI from '../images/chipUI.png'
 import souvUI from '../images/souvUI.png'
 import pot from '../images/pot.png'
 import potcrack from '../images/potcrack.png'
+import scorescreen from '../images/scorescreen.png'
+import eind from '../images/eind.png'
 
 
 
@@ -46,6 +48,8 @@ const Resources = {
     SouvUI: new ImageSource(souvUI),
     Pot: new ImageSource(pot),
     Potcrack: new ImageSource(potcrack),
+    scorescreen: new ImageSource(scorescreen),
+    eind: new ImageSource(eind)
 
 }
 const resourceArray = []
