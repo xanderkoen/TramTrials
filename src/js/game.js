@@ -38,7 +38,7 @@ export class Game extends Engine {
         this.addScene('Credits', new Credits())
 
         //ga naar het de scene
-        this.goToScene('Credits')
+        this.goToScene('Beginscherm')
 
     }
 }
